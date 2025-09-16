@@ -4,6 +4,9 @@ import { CarListContext } from "../context/CarListContext";
 import avis from '../assets/avis.png';
 import alamo from '../assets/alamo.png';
 import hertz from '../assets/hertz.png';
+import transmission from '../assets/transmission.svg';
+import fuel from '../assets/fuel.svg';
+import person from '../assets/person.svg'
 
 const CarListComponentContainer = styled.div`
     padding: 4rem 0;
@@ -80,11 +83,45 @@ const CarListItem = styled.div`
         justify-content: space-between;
     }
 
-    .car-brand {
-        font-size: 28px;
-        font-weight: 600;
+    .car-brand-head {
+        display: flex;
+        flex-direction: column;
         margin: auto 0;
+
+        .car-brand {
+            font-size: 28px;
+            font-weight: 600;
+        }
+        .similar-text {
+            color: grey;
+            font-size: 1rem;
+        }
     }
+    .car-details {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        padding: 1rem 0.5rem;
+        margin-top: 1rem;
+
+        .car-detail-item {
+            display: flex;
+            flex-direction: row;
+            gap: 8px;
+        }
+
+        .car-detail-label {
+            font-size: 16px;
+            font-weight: 600;
+            .car-detail-icon {
+                width: 15px;
+                height: 15px;
+                margin-right: 3px;
+            }
+        }
+
+    }
+
 `;
 
 const VendorLogo = styled.div`
@@ -172,8 +209,33 @@ const CarListComponent = () => {
                             </div>
                         </div>
                          <div className="head">
-                            <span className="car-brand">{(listItem?.Vehicle?.VehMakeModel?.['@Name']).split('or similar')[0]}</span>
+                            <div className="car-brand-head">
+                                <span className="car-brand">{(listItem?.Vehicle?.VehMakeModel?.['@Name']).split('or similar')[0]}</span>
+                                <span className="similar-text" >or similar</span>
+                            </div>
                             <VendorLogo bgImage={getVendorLogo(listItem?.Vendor)} />
+                        </div>
+                        <div className="car-details">
+                            <div className="car-detail-item">
+                                <span className="car-detail-label">
+                                    <img className="car-detail-icon" src={transmission} />Transmission
+                                </span>
+                                <span className="car-detail-item-text">{listItem?.Vehicle['@TransmissionType']}</span>
+                            </div>
+
+                            <div className="car-detail-item">
+                                <span className="car-detail-label">
+                                    <img className="car-detail-icon" src={fuel} />Fuel
+                                </span>
+                                <span className="car-detail-item-text">{listItem?.Vehicle['@FuelType']}</span>
+                            </div>
+
+                            <div className="car-detail-item">
+                                <span className="car-detail-label">
+                                    <img className="car-detail-icon" src={person} />Passenger Quantity
+                                </span>
+                                <span className="car-detail-item-text">{listItem?.Vehicle['@PassengerQuantity']}</span>
+                            </div>
                         </div>
                     </CarListItem>
                 ))}
