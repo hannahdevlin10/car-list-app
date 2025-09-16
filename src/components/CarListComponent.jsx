@@ -54,7 +54,7 @@ const DropdownWrapper = styled.select`
 
 const CarListWrapper = styled.div`
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: repeat(3, 1fr);
     column-gap: 24px;
     row-gap: 24px;
 `;
@@ -73,6 +73,7 @@ const CarListItem = styled.div`
     .img-wrapper {
         height: 200px;
         border-radius: 28px;
+        padding-top: 18px;
 
         img {
             width: 100%;
