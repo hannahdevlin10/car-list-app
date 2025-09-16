@@ -1,12 +1,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { CarListContext } from "../context/CarListContext";
+import avis from '../assets/avis.png';
+import alamo from '../assets/alamo.png';
+import hertz from '../assets/hertz.png';
 
 const CarListComponentContainer = styled.div`
     padding: 4rem 0;
     display: flex;
     flex-direction: column;
     gap: 2rem;
+    max-width: 1280px;
 `;
 
 const CarListHead = styled.div`
@@ -31,7 +35,7 @@ const VendorListItem = styled.div`
     background: #333333;
     cursor: pointer;
 
-      ${props =>
+    ${props =>
         props.isActive == true &&
         css`
         background: #E6356F;
@@ -39,30 +43,63 @@ const VendorListItem = styled.div`
 `;
 
 const DropdownWrapper = styled.select`
-        border: 1px solid black;
-        border-radius: 20px;
-        padding: 12px;
-        font-size: 16px;
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 12px;
+    font-size: 16px;
 `;
 
 const CarListWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: auto auto auto;
     column-gap: 24px;
     row-gap: 24px;
 `;
 
 const CarListItem = styled.div`
-    padding: 1.5rem 1rem;
-    border-radius: 28px;
-    border: 1px solid grey;
+    padding: 0.5rem;
+    border-radius: 24px;
+    border: 1px solid #EFEFEF;
+    box-sizing: border-box;
+    background: #FFFFFF;
 
-    .title {
-        font-size: 40px;
+    .img-wrapper {
+        height: 200px;
+        border-radius: 28px;
 
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+    }
+
+    .head {
+        padding: 0.5rem;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .car-brand {
+        font-size: 28px;
+        font-weight: 600;
+        margin: auto 0;
     }
 `;
 
+const VendorLogo = styled.div`
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+
+    ${props =>
+        props.bgImage &&
+        css`
+        background-image: url("${props.bgImage}");
+    `}
+`;
 
 const CarListComponent = () => {
     const { vendorList, carList } = useContext(CarListContext);
@@ -93,7 +130,19 @@ const CarListComponent = () => {
         }
     }, [selectedTab, carList]);
 
-    console.log('listDataP ', listData)
+    console.log('listData: ', listData)
+
+    const getVendorLogo = (vendor) => {
+        if (vendor === 'AVIS') {
+            return avis;
+        }
+        if (vendor === 'HERTZ') {
+            return hertz;
+        }
+        if (vendor === 'ALAMO') {
+            return alamo;
+        }
+    }
 
     return (
         <CarListComponentContainer>
@@ -117,8 +166,14 @@ const CarListComponent = () => {
            {listData && <CarListWrapper>
                 {listData?.map((listItem) => (
                     <CarListItem>
-                        <div className="upper-section">
-                            {listItem?.TotalCharge?.['@RateTotalAmount']}
+                        <div className="content">
+                            <div className="img-wrapper">
+                                <img src={listItem?.Vehicle?.PictureURL} />
+                            </div>
+                        </div>
+                         <div className="head">
+                            <span className="car-brand">{(listItem?.Vehicle?.VehMakeModel?.['@Name']).split('or similar')[0]}</span>
+                            <VendorLogo bgImage={getVendorLogo(listItem?.Vendor)} />
                         </div>
                     </CarListItem>
                 ))}
