@@ -12,6 +12,14 @@ const PageContainer = styled.div`
   flex-direction: column;
 `;
 
+const WhiteBackground = styled.div`
+  background: #FFFFFF;
+`;
+
+const OffWhiteBackground = styled.div`
+  background: #efefefe;
+`;
+
 const PageHead = styled.div`
   display: flex;
   flex-direction: column;
@@ -22,20 +30,17 @@ const PageHead = styled.div`
     font-size: 3.5rem;
     font-weight: 700;
     line-height: normal;
-    background: linear-gradient(90deg,rgba(230, 53, 111, 1) 0%, rgba(184, 87, 199, 1) 50%, rgba(237, 83, 101, 1) 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
   }
   .page-subtitle {
     font-size: 20px;
     line-height: normal;
+    opacity: 0.7;
   }
 `;
 
 const App = () => {
   const dataUrl = `https://ajaxgeo.cartrawler.com/ctabe/cars.json`;
-  const { setCarList } = useContext(CarListContext);
+  const { setCarList, setVendorList } = useContext(CarListContext);
   const [localCarList, setLocalCarList] = useState();
 
   useEffect(() => {
@@ -58,7 +63,8 @@ const App = () => {
       })
     }
     simplifiedCarList && setCarList(simplifiedCarList);
-  }, [localCarList]);
+    simplifiedCarList && setVendorList(simplifiedCarList?.map((item) => item?.Vendor))
+  }, [localCarList, setCarList, setVendorList]);
 
   return (
     <PageContainer>
@@ -66,6 +72,7 @@ const App = () => {
         <div className="page-title">Car List Directory</div>
         <div className="page-subtitle">Please select a car from the list below to view more details.</div>
       </PageHead>
+
       <CarListComponent />
     </PageContainer>
   )
