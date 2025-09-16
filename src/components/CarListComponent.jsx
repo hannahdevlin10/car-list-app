@@ -66,6 +66,10 @@ const CarListItem = styled.div`
     box-sizing: border-box;
     background: #FFFFFF;
 
+    .content {
+        position: relative;
+    }
+
     .img-wrapper {
         height: 200px;
         border-radius: 28px;
@@ -138,6 +142,38 @@ const VendorLogo = styled.div`
     `}
 `;
 
+const StatusIcon = styled.div`
+    padding: 0.5rem;
+    border: 1px solid #c1bfbfff;
+    display: flex;
+    border-radius: 24px;
+    background: rgba(0, 0, 0, 0.8);
+    width: fit-content;
+    gap: 0.25rem;
+    justify-content: space-between;
+    position: absolute;
+    right: 0;
+    top: 0;
+
+    .status-icon {
+        border-radius: 40px;
+        width: 8px;
+        height: 8px;
+        margin: auto 0;
+
+        ${props =>
+            props.iconColor &&
+            css`
+            background-color: ${props.iconColor};
+        `}
+    }
+    .status-text {
+        font-size: 12px;
+        color: white;
+
+    }
+`;
+
 const CarListComponent = () => {
     const { vendorList, carList } = useContext(CarListContext);
     let uniqueVendorList = [...new Set(vendorList)];
@@ -207,6 +243,10 @@ const CarListComponent = () => {
                             <div className="img-wrapper">
                                 <img src={listItem?.Vehicle?.PictureURL} />
                             </div>
+                            <StatusIcon iconColor={listItem['@Status'] === 'Available' ? 'lime' : 'red'}>
+                                <span className="status-icon" />
+                                <span className="status-text">{listItem['@Status']}</span>
+                            </StatusIcon>
                         </div>
                          <div className="head">
                             <div className="car-brand-head">
