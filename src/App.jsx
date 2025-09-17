@@ -164,7 +164,7 @@ const App = () => {
       </WhiteBackground>
 
     <OffWhiteBackground>
-      <Legend>
+      <Legend className="animated animatedFadeInUp fadeInUp">
         {legend && <div className="legend-item">
           <span className="tag">Pick Up</span>
           <span className="value">{new Date(legend['@PickUpDateTime']).toUTCString()}</span>

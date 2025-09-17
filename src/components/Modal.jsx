@@ -57,7 +57,7 @@ const ModalInner = styled.div`
     -webkit-background-clip: padding-box, border-box;
     z-index: 5;
     animation-name: fadeIn;
-    animation-duration: 0.4s;
+    animation-duration: 0.75s;
     margin: 15% 1rem 15% 1rem;
 
     @media only screen and ${mediaQueries.lg} {
