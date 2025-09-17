@@ -70,34 +70,63 @@ const OffWhiteBackground = styled.div`
 const PageHead = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
   margin: auto;
   text-align: center;
   padding: 2.5rem;
   max-width: 80rem;
+
+  @media only screen and ${mediaQueries.sm} {
+    gap: 1rem;
+  }
+
   .page-title {
-    font-size: 3.5rem;
+    font-size: 2rem;
     font-weight: 700;
     line-height: normal;
+
+    @media only screen and ${mediaQueries.sm} {
+        font-size: 3.5rem;
+    }
   }
   .page-subtitle {
-    font-size: 1.25rem;
+    font-size: 1rem;
     line-height: normal;
     opacity: 0.7;
+
+    @media only screen and ${mediaQueries.sm} {
+      font-size: 1.25rem;
+    }
   }
 `;
 
 const Legend = styled.div`
+  padding: 0 1rem;
+  margin: 1rem auto auto auto;
   display: flex;
-  flex-direction: row;
+  align-items: center;
   justify-content: center;
-  gap: 1.75rem;
-  padding: 1rem;
-  margin: auto;
 
-    @media only screen and ${mediaQueries.sm} {
-      padding: 1.25rem 1.25rem 0 2.5rem;
+  @media only screen and ${mediaQueries.sm} {
+    margin: 2.5rem auto auto auto;
+    padding: 0 2.5rem;
+  }
+
+  .inner {
+    box-sizing: border-box;
+    width: fit-content;
+    padding: 1rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1.75rem;
+    background: white;
+    border-radius: 24px;
+
+    @media only screen and ${mediaQueries.xl} {
+      width: 1280px;
     }
+  }
 
   .legend-item {
     display: flex;
@@ -165,22 +194,24 @@ const App = () => {
 
     <OffWhiteBackground>
       <Legend className="animated animatedFadeInUp fadeInUp">
-        {legend && <div className="legend-item">
-          <span className="tag">Pick Up</span>
-          <span className="value">{new Date(legend['@PickUpDateTime']).toUTCString()}</span>
-        </div>}
-        {legend && <div className="legend-item">
-          <span className="tag">Drop Off</span>
-          <span className="value">{new Date(legend['@ReturnDateTime']).toUTCString()}</span>
-        </div>}
-        {legend?.PickUpLocation['@Name'] && <div className="legend-item">
-          <span className="tag">Pick Up Location</span>
-          <span className="value">{legend?.PickUpLocation['@Name']}</span>
-        </div>}
-        {legend?.ReturnLocation['@Name'] && <div className="legend-item" style={{ borderRight: '0' }}>
-          <span className="tag">Return Location</span>
-          <span className="value">{legend?.ReturnLocation['@Name']}</span>
-        </div>}
+        <div className="inner">
+          {legend && <div className="legend-item">
+            <span className="tag">Pick Up</span>
+            <span className="value">{new Date(legend['@PickUpDateTime']).toUTCString()}</span>
+          </div>}
+          {legend && <div className="legend-item">
+            <span className="tag">Drop Off</span>
+            <span className="value">{new Date(legend['@ReturnDateTime']).toUTCString()}</span>
+          </div>}
+          {legend?.PickUpLocation['@Name'] && <div className="legend-item">
+            <span className="tag">Pick Up Location</span>
+            <span className="value">{legend?.PickUpLocation['@Name']}</span>
+          </div>}
+          {legend?.ReturnLocation['@Name'] && <div className="legend-item" style={{ borderRight: '0' }}>
+            <span className="tag">Return Location</span>
+            <span className="value">{legend?.ReturnLocation['@Name']}</span>
+          </div>}
+        </div>
       </Legend>
       <CarListComponent />
     </OffWhiteBackground>
