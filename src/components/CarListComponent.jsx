@@ -110,16 +110,21 @@ const CarListComponent = () => {
     const { vendorList, carList, listDataRefined, setListDataRefined } = useContext(CarListContext);
     let uniqueVendorList = [...new Set(vendorList)];
 
-    const allTabValue = 'ALL';
-    const [selectedTab, setSelectedTab] = useState(allTabValue);
+    const [selectedTab, setSelectedTab] = useState();
     const [selectedPriceSort, setSelectedPriceSort] = useState(selectValues.sortBy);
 
     useEffect(() => {
          setListDataRefined(carList);
-    }, [carList, setListDataRefined]);
+        // eslint-disable-next-line
+    }, [carList]);
 
-    const handleMenuTabChange = (selectedTab) => {
-        setSelectedTab(selectedTab)
+
+    const handleMenuTabChange = (target) => {
+      setSelectedTab(target);
+      if (selectedTab === target) {
+        setSelectedTab(null);
+        setListDataRefined(carList);
+      }
     }
 
     const handleSortChange = (e) => {
@@ -146,10 +151,8 @@ const CarListComponent = () => {
 
     useEffect(() => {
         setSelectedPriceSort(selectValues.sortBy);
-        if (selectedTab === allTabValue) {
-            setListDataRefined(carList);
-        } else {
-            let result = carList?.filter((car) => car.Vendor === selectedTab);
+        if (selectedTab) {
+             let result = carList && carList?.filter((car) => car.Vendor === selectedTab);
             setListDataRefined(result);
         }
         // eslint-disable-next-line
@@ -160,7 +163,6 @@ const CarListComponent = () => {
             <CarListHead>
                 {uniqueVendorList && (
                     <VendorListMenu>
-                        <VendorListItem isActive={selectedTab === allTabValue} key={`vendor-list-item-0`} className="vendor-list-item" onClick={() => handleMenuTabChange(allTabValue)}>{allTabValue}</VendorListItem>
                         {uniqueVendorList?.map((vendor, index) => (
                             <VendorListItem isActive={selectedTab === vendor} key={`vendor-list-item-${index + 1}`} className="vendor-list-item" onClick={() => handleMenuTabChange(vendor)}>{vendor}</VendorListItem>
                         ))}
