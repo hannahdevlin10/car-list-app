@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/main.c15289b5.css","mappings":"AAAA,MACE,uDACF,CAEA,KACE,QACF","sources":["index.css"],"sourcesContent":[":root {\n  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;\n}\n\nbody {\n  margin: 0;\n}\n"],"names":[],"sourceRoot":""}

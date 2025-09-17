@@ -216,42 +216,42 @@ const Modal = (displayItem) => {
                                         <div className="car-details">
                                             <div className="car-detail-item">
                                                 <span className="car-detail-label">
-                                                    <img className="car-detail-icon" src={transmission} />Transmission
+                                                    <img alt='car-detail-icon' className="car-detail-icon" src={transmission} />Transmission
                                                 </span>
                                                 <span className="car-detail-item-text">{item?.Vehicle['@TransmissionType']}</span>
                                             </div>
 
                                             <div className="car-detail-item">
                                                 <span className="car-detail-label">
-                                                    <img className="car-detail-icon" src={fuel} />Fuel
+                                                    <img alt='car-detail-icon' className="car-detail-icon" src={fuel} />Fuel
                                                 </span>
                                                 <span className="car-detail-item-text">{item?.Vehicle['@FuelType']}</span>
                                             </div>
 
                                             <div className="car-detail-item">
                                                 <span className="car-detail-label">
-                                                    <img className="car-detail-icon" src={person} />Passenger Quantity
+                                                    <img alt='car-detail-icon' className="car-detail-icon" src={person} />Passenger Quantity
                                                 </span>
                                                 <span className="car-detail-item-text">{item?.Vehicle['@PassengerQuantity']}</span>
                                             </div>
 
                                             <div className="car-detail-item">
                                                 <span className="car-detail-label">
-                                                    <img className="car-detail-icon" src={door} />Door Count
+                                                    <img alt='car-detail-icon' className="car-detail-icon" src={door} />Door Count
                                                 </span>
                                                 <span className="car-detail-item-text">{item?.Vehicle['@DoorCount']}</span>
                                             </div>
 
                                             <div className="car-detail-item">
                                                 <span className="car-detail-label">
-                                                    <img className="car-detail-icon" src={bag} />Baggage Quantity Count
+                                                    <img alt='car-detail-icon' className="car-detail-icon" src={bag} />Baggage Quantity Count
                                                 </span>
                                                 <span className="car-detail-item-text">{item?.Vehicle['@BaggageQuantity']}</span>
                                             </div>
 
                                             {item?.Vehicle['@AirConditionInd'] && <div className="car-detail-item">
                                                 <span className="car-detail-label">
-                                                    <img className="car-detail-icon" src={snow} />Air Conditioned
+                                                    <img alt='car-detail-icon' className="car-detail-icon" src={snow} />Air Conditioned
                                                 </span>
                                             </div>}
                                         </div>
@@ -262,13 +262,13 @@ const Modal = (displayItem) => {
                                     <span className="price">{item?.TotalCharge['@RateTotalAmount']}</span>
                                 </PriceWrapper>
                                 <ModalCTAWrapper>
-                                    <a className="modal-cta" id="back" onClick={() => toggleModel()}>Go Back</a>
-                                    <a className="modal-cta" id="enquire" onClick={() => toggleModel()}>Enquire</a>
+                                    <a href='' className="modal-cta" id="back" onClick={() => toggleModel()}>Go Back</a>
+                                    <a href='' className="modal-cta" id="enquire" onClick={() => toggleModel()}>Enquire</a>
                                 </ModalCTAWrapper>
                             </div>
                             <VendorLogoCustom bgImage={getVendorLogo(item?.Vendor)} />
                             <ModalImageWrapper>
-                                <img src={item?.Vehicle?.PictureURL} />
+                                <img alt='car-detail-picture' src={item?.Vehicle?.PictureURL} />
                             </ModalImageWrapper>
                         </div>
                     </ModalContent>

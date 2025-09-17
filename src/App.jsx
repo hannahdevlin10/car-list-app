@@ -133,7 +133,7 @@ const App = () => {
     .then(response => response.json())
     .then(data => setLocalCarList(data))
     .catch(error => console.error('Error:', error));
-  }, []);
+  }, [dataUrl]);
 
   useEffect(() => {
     let simplifiedCarList = [];

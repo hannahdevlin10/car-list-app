@@ -77,7 +77,7 @@ const VendorListItem = styled.div`
     height: fit-content;
 
     ${props =>
-        props.isActive == true &&
+        props.isActive === true &&
         css`
         background: #E6356F;
     `}
@@ -116,7 +116,7 @@ const CarListComponent = () => {
 
     useEffect(() => {
          setListDataRefined(carList);
-    }, []);
+    }, [carList, setListDataRefined]);
 
     const handleMenuTabChange = (selectedTab) => {
         setSelectedTab(selectedTab)
@@ -132,35 +132,35 @@ const CarListComponent = () => {
             .slice()
             .sort((a, b) => parsePrice(a.TotalCharge['@RateTotalAmount']) - parsePrice(b.TotalCharge['@RateTotalAmount']));
 
-        if (selectedPriceSort == selectValues.lowest) {
+        if (selectedPriceSort === selectValues.lowest) {
             setListDataRefined(sortedItemsLowest);
         }
-        if (selectedPriceSort == selectValues.highest) {
+        if (selectedPriceSort === selectValues.highest) {
             setListDataRefined(sortedItemsLowest.reverse());
         }
-        if (selectedPriceSort == selectValues.sortBy) {
+        if (selectedPriceSort === selectValues.sortBy) {
             setListDataRefined(carList);
         }
-    }, [selectedPriceSort]);
+    }, [selectedPriceSort, carList, listDataRefined, selectValues?.highest, selectValues?.lowest, selectValues?.sortBy, setListDataRefined]);
 
     useEffect(() => {
         setSelectedPriceSort(selectValues.sortBy);
-        if (selectedTab == allTabValue) {
+        if (selectedTab === allTabValue) {
             setListDataRefined(carList);
         } else {
-            let result = carList?.filter((car) => car.Vendor == selectedTab);
+            let result = carList?.filter((car) => car.Vendor === selectedTab);
             setListDataRefined(result);
         }
-    }, [selectedTab, carList]);
+    }, [selectedTab, carList, selectValues.sortBy, setListDataRefined]);
 
     return (
         <CarListComponentContainer className="animated animatedFadeInUp fadeInUp">
             <CarListHead>
                 {uniqueVendorList && (
                     <VendorListMenu>
-                        <VendorListItem isActive={selectedTab == allTabValue} key={`vendor-list-item-0`} className="vendor-list-item" onClick={() => handleMenuTabChange(allTabValue)}>{allTabValue}</VendorListItem>
+                        <VendorListItem isActive={selectedTab === allTabValue} key={`vendor-list-item-0`} className="vendor-list-item" onClick={() => handleMenuTabChange(allTabValue)}>{allTabValue}</VendorListItem>
                         {uniqueVendorList?.map((vendor, index) => (
-                            <VendorListItem isActive={selectedTab == vendor} key={`vendor-list-item-${index + 1}`} className="vendor-list-item" onClick={() => handleMenuTabChange(vendor)}>{vendor}</VendorListItem>
+                            <VendorListItem isActive={selectedTab === vendor} key={`vendor-list-item-${index + 1}`} className="vendor-list-item" onClick={() => handleMenuTabChange(vendor)}>{vendor}</VendorListItem>
                         ))}
                     </VendorListMenu>
                 )}

@@ -68,7 +68,7 @@ const CarListItem = (listItem, index) => {
             <CarListItemStyle>
                 <div className="content">
                     <div className="img-wrapper">
-                        <img src={item?.Vehicle?.PictureURL} />
+                        <img alt="vehicle-picture" src={item?.Vehicle?.PictureURL} />
                     </div>
                     <StatusIcon iconColor={item['@Status'] === 'Available' ? 'lime' : 'red'}>
                         <span className="status-icon" />
@@ -85,21 +85,21 @@ const CarListItem = (listItem, index) => {
                 <div className="car-details">
                     <div className="car-detail-item">
                         <span className="car-detail-label">
-                            <img className="car-detail-icon" src={transmission} />Transmission
+                            <img alt="vehicle-icon" className="car-detail-icon" src={transmission} />Transmission
                         </span>
                         <span className="car-detail-item-text">{item?.Vehicle['@TransmissionType']}</span>
                     </div>
 
                     <div className="car-detail-item">
                         <span className="car-detail-label">
-                            <img className="car-detail-icon" src={fuel} />Fuel
+                            <img alt="car-detail-icon" className="car-detail-icon" src={fuel} />Fuel
                         </span>
                         <span className="car-detail-item-text">{item?.Vehicle['@FuelType']}</span>
                     </div>
 
                     <div className="car-detail-item">
                         <span className="car-detail-label">
-                            <img className="car-detail-icon" src={person} />Passenger Quantity
+                            <img alt="car-detail-icon" className="car-detail-icon" src={person} />Passenger Quantity
                         </span>
                         <span className="car-detail-item-text">{item?.Vehicle['@PassengerQuantity']}</span>
                     </div>
@@ -110,7 +110,7 @@ const CarListItem = (listItem, index) => {
                     </PriceWrapper>
                 </div>
                 <div className="car-item-cta">
-                    <a onClick={() => handleSeeMoreClick(idx)}>View More Details</a>
+                    <a href='' onClick={() => handleSeeMoreClick(idx)}>View More Details</a>
                 </div>
             </CarListItemStyle>
         </>
