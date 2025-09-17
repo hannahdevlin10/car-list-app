@@ -2,7 +2,7 @@ import styled, { css } from "styled-components";
 
 export const CarListItemStyle = styled.div`
     padding: 1rem 0.5rem;
-    border-radius: 24px;
+    border-radius: 1.5rem;
     border: 1px solid #EFEFEF;
     box-sizing: border-box;
     background: #FFFFFF;
@@ -15,9 +15,9 @@ export const CarListItemStyle = styled.div`
     }
 
     .img-wrapper {
-        height: 200px;
-        border-radius: 28px;
-        padding-top: 18px;
+        height: 12.5rem;
+        border-radius: 1.75rem;
+        padding-top: 1.125rem;
 
         img {
             width: 100%;
@@ -38,7 +38,7 @@ export const CarListItemStyle = styled.div`
         margin: auto 0;
 
         .car-brand {
-            font-size: 28px;
+            font-size: 1.75rem;
             font-weight: 600;
         }
         .similar-text {
@@ -57,16 +57,16 @@ export const CarListItemStyle = styled.div`
         .car-detail-item {
             display: flex;
             flex-direction: row;
-            gap: 8px;
+            gap: 0.5rem;
         }
 
         .car-detail-label {
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 600;
             .car-detail-icon {
-                width: 15px;
-                height: 15px;
-                margin-right: 3px;
+                width: 0.9375rem;
+                height: 0.9375rem;
+                margin-right: 0.1875rem;
             }
         }
     }
@@ -76,7 +76,7 @@ export const CarListItemStyle = styled.div`
         color: white;
         font-weight: 600;
         text-decoration: none;
-        border-radius: 24px;
+        border-radius: 1.5rem;
         text-align: center;
         width: auto;
         cursor: pointer;
@@ -85,7 +85,7 @@ export const CarListItemStyle = styled.div`
             background: #f53a79ff;
         }
 
-        @media only screen and (min-width: 992px) {
+        @media only screen and (min-width: 62rem) {
             width: fit-content;
             margin: auto;
         }
@@ -101,8 +101,8 @@ export const VendorLogo = styled.div`
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
-    width: 70px;
-    height: 60px;
+    width: 4.375rem;
+    height: 3.75rem;
 
     ${props =>
         props.bgImage &&
@@ -114,16 +114,16 @@ export const VendorLogo = styled.div`
 export const PriceWrapper = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 4px;
+    gap: 0.25rem;
     padding: 0 1rem;
     margin-bottom: 2rem;
 
     .currency-symbol {
-        font-size: 12px;
-        padding-top: 2px;
+        font-size: 0.75rem;
+        padding-top: 0.125rem;
     }
     .price {
-        font-size: 18px;
+        font-size: 1.125rem;
         font-weight: 600;
     }
 `;

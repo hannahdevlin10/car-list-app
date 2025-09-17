@@ -47,7 +47,7 @@ const ModalInner = styled.div`
 
     margin: 5% auto;
     border: 1px solid #888;
-    max-width: 950px;
+    max-width: 59.375rem;
     box-sizing: border-box;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
@@ -72,7 +72,7 @@ const ModalContent = styled.div`
         gap: 0;
         background: #f1f1f1;
         padding: 1.5rem;
-        border-radius: 28px;
+        border-radius: 1.75rem;
         position: relative;
 
         @media only screen and ${mediaQueries.lg} {
@@ -108,8 +108,8 @@ const ModalCTAWrapper = styled.div`
     .modal-cta {
         padding: 0.5rem 1.75rem;
         text-decoration: none;
-        border-radius: 24px;
-        font-size: 14px;
+        border-radius: 1.5rem;
+        font-size: 0.875rem;
         cursor: pointer;
         display: flex;
         text-align: center;
@@ -140,8 +140,8 @@ const ModalDisplayItemInfo = styled.div`
 `;
 
 const ModalImageWrapper = styled.div`
-    border-radius: 24px;
-    max-height: 450px;
+    border-radius: 1.5rem;
+    max-height: 28.125rem;
     width: auto;
     background: white;
     order: 1;
@@ -169,8 +169,8 @@ const CarListItemStyleCustom = styled(CarListItemStyle)`
         @media only screen and ${mediaQueries.sm} {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            column-gap: 24px;
-            row-gap: 12px;
+            column-gap: 1.5rem;
+            row-gap: 0.75rem;
         }
 
         @media only screen and ${mediaQueries.lg} {
@@ -181,13 +181,13 @@ const CarListItemStyleCustom = styled(CarListItemStyle)`
     }
 
     .car-detail-icon {
-        margin-right: 5px !important;
+        margin-right: 0.3125rem !important;
     }
 `;
 
 const VendorLogoCustom = styled(VendorLogo)`
     position: absolute;
-    right: 34px;
+    right: 2.125rem;
 `;
 
 const Modal = (displayItem) => {

@@ -14,23 +14,23 @@ const CarListComponentContainer = styled.div`
     gap: 2rem;
     margin: auto;
     padding: 1rem;
-    max-width: 1280px;
+    max-width: 80rem;
     position: relative;
     z-index: 1;
 
     @media only screen and ${mediaQueries.sm} {
-        padding: 40px;
+        padding: 2.5rem;
     }
 
     // CSS Overrides
     [class*="MuiOutlinedInput"] {
-        border-radius: 24px;
+        border-radius: 1.5rem;
         width: 99%;
         padding: 0.25rem 0 0.25rem 0.5rem;
         margin-right: 0;
 
         @media only screen and ${mediaQueries.sm} {
-            width: 200px;
+            width: 12.5rem;
             margin-right: 0.75rem;
         }
     }
@@ -53,8 +53,8 @@ const CarListHead = styled.div`
 const VendorListMenu = styled.div`
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    column-gap: 8px;
-    row-gap: 8px;
+    column-gap: 0.5rem;
+    row-gap: 0.5rem;
     text-align: center;
     align-items: center;
 
@@ -66,10 +66,10 @@ const VendorListMenu = styled.div`
 `;
 
 const VendorListItem = styled.div`
-    font-size: 14px;
+    font-size: 0.875rem;
     font-weight: 700;
-    padding: 12px 32px;
-    border-radius: 24px;
+    padding: 0.75rem 2rem;
+    border-radius: 1.5rem;
     border: 1px solid rgba(17, 17, 17, 0.05);
     color: white;
     background: #333333;
@@ -91,8 +91,8 @@ const CarListWrapper = styled.div`
 
     @media only screen and ${mediaQueries.sm} {
         grid-template-columns: repeat(2, 1fr);
-        column-gap: 24px;
-        row-gap: 24px;
+        column-gap: 1.5rem;
+        row-gap: 1.5rem;
     }
 
     @media only screen and ${mediaQueries.lg} {

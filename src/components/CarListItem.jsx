@@ -13,7 +13,7 @@ const StatusIcon = styled.div`
     padding: 0.5rem;
     border: 1px solid #c1bfbfff;
     display: flex;
-    border-radius: 24px;
+    border-radius: 1.5rem;
     background: rgba(0, 0, 0, 0.8);
     width: fit-content;
     gap: 0.25rem;
@@ -23,9 +23,9 @@ const StatusIcon = styled.div`
     top: 0;
 
     .status-icon {
-        border-radius: 40px;
-        width: 8px;
-        height: 8px;
+        border-radius: 2.5rem;
+        width: 0.5rem;
+        height: 0.5rem;
         margin: auto 0;
 
         ${props =>
@@ -35,7 +35,7 @@ const StatusIcon = styled.div`
         `}
     }
     .status-text {
-        font-size: 12px;
+        font-size: 0.75rem;
         color: white;
 
     }
