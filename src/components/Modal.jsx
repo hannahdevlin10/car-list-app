@@ -44,7 +44,7 @@ const ModalInner = styled.div`
         }
     }
 
-    margin: 15% auto;
+    margin: 5% auto;
     border: 1px solid #888;
     max-width: 950px;
     box-sizing: border-box;
@@ -57,6 +57,10 @@ const ModalInner = styled.div`
     z-index: 5;
     animation-name: fadeIn;
     animation-duration: 0.4s;
+
+    @media only screen and ${mediaQueries.lg} {
+        margin: 15% auto;
+    }
 `;
 
 const ModalContent = styled.div`
@@ -64,7 +68,7 @@ const ModalContent = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        gap: 2rem;
+        gap: 0;
         background: #f1f1f1;
         padding: 1.5rem;
         border-radius: 28px;
@@ -76,17 +80,30 @@ const ModalContent = styled.div`
     }
 
     .inner {
-        width: 50%;
+        width: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
+        order: 2;
+
+        @media only screen and ${mediaQueries.lg} {
+             width: 50%;
+            order: 1;
+        }
     }
 `;
 
 const ModalCTAWrapper = styled.div`
     display: flex;
-    flex-direction: row;
-    gap: 2rem;
+    flex-direction: column;
+    gap: 1rem;
+
+    @media only screen and ${mediaQueries.sm} {
+        display: flex;
+        flex-direction: row;
+        gap: 2rem;
+    }
+
     .modal-cta {
         padding: 0.5rem 1.75rem;
         text-decoration: none;
@@ -124,13 +141,19 @@ const ModalDisplayItemInfo = styled.div`
 const ModalImageWrapper = styled.div`
     border-radius: 24px;
     max-height: 450px;
-    width: 60%;
+    width: auto;
     background: white;
+    order: 1;
 
     img {
         width: 100%;
         height: 100%;
         object-fit: contain;
+    }
+
+    @media only screen and ${mediaQueries.lg} {
+        width: 60%;
+        order: 2;
     }
 `;
 
@@ -138,7 +161,22 @@ const CarListItemStyleCustom = styled(CarListItemStyle)`
     background: transparent;
 
     .car-details {
-        gap: 1rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        @media only screen and ${mediaQueries.sm} {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            column-gap: 24px;
+            row-gap: 12px;
+        }
+
+        @media only screen and ${mediaQueries.lg} {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
     }
 
     .car-detail-icon {
