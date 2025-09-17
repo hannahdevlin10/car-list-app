@@ -144,7 +144,12 @@ const CarListComponent = () => {
             setListDataRefined(sortedItemsLowest.reverse());
         }
         if (selectedPriceSort === selectValues.sortBy) {
-            setListDataRefined(carList);
+            if (selectedTab) {
+                let result = carList && carList?.filter((car) => car.Vendor === selectedTab);
+                setListDataRefined(result);
+            } else {
+                setListDataRefined(carList);
+            }
         }
         // eslint-disable-next-line
     }, [selectedPriceSort]);
@@ -153,7 +158,7 @@ const CarListComponent = () => {
         setSelectedPriceSort(selectValues.sortBy);
         if (selectedTab) {
              let result = carList && carList?.filter((car) => car.Vendor === selectedTab);
-            setListDataRefined(result);
+             setListDataRefined(result);
         }
         // eslint-disable-next-line
     }, [selectedTab]);
