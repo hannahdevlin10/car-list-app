@@ -71,18 +71,18 @@ export const CarListItemStyle = styled.div`
         }
     }
     .car-item-cta {
-        padding: 0.5rem;
-        background: #E6356F;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 1.5rem;
-        text-align: center;
-        width: auto;
-        cursor: pointer;
-
-        a {
+        button {
             color: #FFFFFF;
             text-decoration: none;
+            padding: 0.5rem;
+            background: #E6356F;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 1.5rem;
+            text-align: center;
+            width: auto;
+            cursor: pointer;
+            border: 0;
         }
 
         &:hover {

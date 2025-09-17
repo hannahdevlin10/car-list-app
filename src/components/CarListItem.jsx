@@ -110,7 +110,7 @@ const CarListItem = (listItem, index) => {
                     </PriceWrapper>
                 </div>
                 <div className="car-item-cta">
-                    <a href='#' onClick={() => handleSeeMoreClick(idx)}>View More Details</a>
+                    <button onClick={() => handleSeeMoreClick(idx)}>View More Details</button>
                 </div>
             </CarListItemStyle>
         </>
