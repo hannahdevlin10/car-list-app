@@ -114,14 +114,22 @@ const Legend = styled.div`
 
   .inner {
     box-sizing: border-box;
-    width: fit-content;
+    width: 100%;
     padding: 1rem;
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 1.125rem;
+    row-gap: 1.125rem;
     justify-content: center;
-    gap: 1.75rem;
     background: white;
     border-radius: 24px;
+
+    @media only screen and ${mediaQueries.sm} {
+      display: flex;
+      flex-direction: row;
+      width: fit-content;
+      gap: 1.75rem;
+    }
 
     @media only screen and ${mediaQueries.xl} {
       width: 1280px;
@@ -131,11 +139,12 @@ const Legend = styled.div`
   .legend-item {
     display: flex;
     flex-direction: column;
-    gap: 0.375rem;
+    gap: 0.25rem;
     width: fit-content;
 
     @media only screen and ${mediaQueries.xl} {
-        flex-direction: row;
+      flex-direction: row;
+      gap: 0.375rem;
     }
   }
 
