@@ -49,7 +49,7 @@ export const CarListItemStyle = styled.div`
     .car-details {
         display: flex;
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.875rem;
         padding: 1rem 0.5rem;
         margin-top: 1rem;
         margin-bottom: 1rem;

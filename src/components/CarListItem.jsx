@@ -7,6 +7,9 @@ import hertz from '../assets/hertz.png';
 import transmission from '../assets/transmission.svg';
 import fuel from '../assets/fuel.svg';
 import person from '../assets/person.svg'
+import door from '../assets/door.svg';
+import bag from '../assets/bag.svg';
+import snow from '../assets/snowflake.svg';
 import { CarListItemStyle, PriceWrapper, VendorLogo } from '../CommonStyles';
 
 const StatusIcon = styled.div`
@@ -103,6 +106,26 @@ const CarListItem = (listItem, index) => {
                         </span>
                         <span className="car-detail-item-text">{item?.Vehicle['@PassengerQuantity']}</span>
                     </div>
+
+                    <div className="car-detail-item">
+                        <span className="car-detail-label">
+                            <img alt='car-detail-icon' className="car-detail-icon" src={door} />Door Count
+                        </span>
+                        <span className="car-detail-item-text">{item?.Vehicle['@DoorCount']}</span>
+                    </div>
+
+                    <div className="car-detail-item">
+                        <span className="car-detail-label">
+                            <img alt='car-detail-icon' className="car-detail-icon" src={bag} />Baggage Quantity Count
+                        </span>
+                        <span className="car-detail-item-text">{item?.Vehicle['@BaggageQuantity']}</span>
+                    </div>
+
+                    {item?.Vehicle['@AirConditionInd'] && <div className="car-detail-item">
+                        <span className="car-detail-label">
+                            <img alt='car-detail-icon' className="car-detail-icon" src={snow} />Air Conditioned
+                        </span>
+                    </div>}
 
                     <PriceWrapper id="price-wrapper-custom">
                         <span className="currency-symbol">{item?.TotalCharge['@CurrencyCode']}</span>
