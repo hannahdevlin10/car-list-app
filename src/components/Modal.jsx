@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import styled, { css } from "styled-components";
 import { CarListContext } from "../context/CarListContext";
-import { CarListItemStyle, getVendorLogo, VendorLogo } from "./CarListItem";
 import door from '../assets/door.svg';
 import transmission from '../assets/transmission.svg';
 import fuel from '../assets/fuel.svg';
@@ -9,6 +8,8 @@ import person from '../assets/person.svg';
 import bag from '../assets/bag.svg';
 import snow from '../assets/snowflake.svg';
 import mediaQueries from '../mediaQueries.ts';
+import { PriceWrapper, CarListItemStyle, VendorLogo } from "../CommonStyles";
+import { getVendorLogo } from "./CarListItem.jsx";
 
 const FadeBackground = styled.div`
     width: 100%;
@@ -189,23 +190,6 @@ const VendorLogoCustom = styled(VendorLogo)`
     right: 34px;
 `;
 
-const PriceWrapper = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 4px;
-    padding: 0 1rem;
-    margin-bottom: 2rem;
-
-    .currency-symbol {
-        font-size: 12px;
-        padding-top: 2px;
-    }
-    .price {
-        font-size: 18px;
-        font-weight: 600;
-    }
-`;
-
 const Modal = (displayItem) => {
     const { setSelectedItem } = useContext(CarListContext);
     let item = displayItem?.displayItem;
@@ -276,7 +260,6 @@ const Modal = (displayItem) => {
                                 <PriceWrapper>
                                     <span className="currency-symbol">{item?.TotalCharge['@CurrencyCode']}</span>
                                     <span className="price">{item?.TotalCharge['@RateTotalAmount']}</span>
-
                                 </PriceWrapper>
                                 <ModalCTAWrapper>
                                     <a className="modal-cta" id="back" onClick={() => toggleModel()}>Go Back</a>

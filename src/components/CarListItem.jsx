@@ -7,91 +7,7 @@ import hertz from '../assets/hertz.png';
 import transmission from '../assets/transmission.svg';
 import fuel from '../assets/fuel.svg';
 import person from '../assets/person.svg'
-
-export const CarListItemStyle = styled.div`
-    padding: 1rem 0.5rem;
-    border-radius: 24px;
-    border: 1px solid #EFEFEF;
-    box-sizing: border-box;
-    background: #FFFFFF;
-
-    .content {
-        position: relative;
-    }
-
-    .img-wrapper {
-        height: 200px;
-        border-radius: 28px;
-        padding-top: 18px;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-    }
-
-    .head {
-        padding: 0.5rem;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .car-brand-head {
-        display: flex;
-        flex-direction: column;
-        margin: auto 0;
-
-        .car-brand {
-            font-size: 28px;
-            font-weight: 600;
-        }
-        .similar-text {
-            color: grey;
-            font-size: 1rem;
-        }
-    }
-    .car-details {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        padding: 1rem 0.5rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
-
-        .car-detail-item {
-            display: flex;
-            flex-direction: row;
-            gap: 8px;
-        }
-
-        .car-detail-label {
-            font-size: 16px;
-            font-weight: 600;
-            .car-detail-icon {
-                width: 15px;
-                height: 15px;
-                margin-right: 3px;
-            }
-        }
-    }
-    .car-item-cta {
-        padding: 0.5rem;
-        background: #E6356F;
-        color: white;
-        font-weight: 600;
-        text-decoration: none;
-        border-radius: 24px;
-        text-align: center;
-        width: fit-content;
-        margin: auto;
-        cursor: pointer;
-
-        &:hover {
-            background: #f53a79ff;
-        }
-    }
-`;
+import { CarListItemStyle, PriceWrapper, VendorLogo } from '../CommonStyles';
 
 const StatusIcon = styled.div`
     padding: 0.5rem;
@@ -123,20 +39,6 @@ const StatusIcon = styled.div`
         color: white;
 
     }
-`;
-
-export const VendorLogo = styled.div`
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    width: 70px;
-    height: 60px;
-
-    ${props =>
-        props.bgImage &&
-        css`
-        background-image: url("${props.bgImage}");
-    `}
 `;
 
 export const getVendorLogo = (vendor) => {
@@ -201,6 +103,11 @@ const CarListItem = (listItem, index) => {
                         </span>
                         <span className="car-detail-item-text">{item?.Vehicle['@PassengerQuantity']}</span>
                     </div>
+
+                    <PriceWrapper id="price-wrapper-custom">
+                        <span className="currency-symbol">{item?.TotalCharge['@CurrencyCode']}</span>
+                        <span className="price">{item?.TotalCharge['@RateTotalAmount']}</span>
+                    </PriceWrapper>
                 </div>
                 <div className="car-item-cta">
                     <a onClick={() => handleSeeMoreClick(idx)}>View More Details</a>

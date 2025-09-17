@@ -25,8 +25,14 @@ const CarListComponentContainer = styled.div`
     // CSS Overrides
     [class*="MuiOutlinedInput"] {
         border-radius: 24px;
-        width: 200px;
-        padding: 0.25rem;
+        width: 99%;
+        padding: 0.25rem 0 0.25rem 0.5rem;
+        margin-right: 0;
+
+        @media only screen and ${mediaQueries.sm} {
+            width: 200px;
+            margin-right: 0.75rem;
+        }
     }
     .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline { 
         border-color: #E6356F !important;
@@ -80,11 +86,13 @@ const VendorListItem = styled.div`
 const CarListWrapper = styled.div`
     display: grid;
     grid-template-columns: repeat(1, 1fr);
-    column-gap: 24px;
-    row-gap: 24px;
+    column-gap: 1rem;
+    row-gap: 1rem;
 
     @media only screen and ${mediaQueries.sm} {
         grid-template-columns: repeat(2, 1fr);
+        column-gap: 24px;
+        row-gap: 24px;
     }
 
     @media only screen and ${mediaQueries.lg} {
@@ -93,12 +101,18 @@ const CarListWrapper = styled.div`
 `;
 
 const CarListComponent = () => {
+    const selectValues = {
+        sortBy: 'Sort by',
+        lowest: 'Lowest to Highest',
+        highest: 'Highest to Lowest'
+    }
+
     const { vendorList, carList, listDataRefined, setListDataRefined } = useContext(CarListContext);
     let uniqueVendorList = [...new Set(vendorList)];
 
     const allTabValue = 'ALL';
     const [selectedTab, setSelectedTab] = useState(allTabValue);
-    const [selectedPriceSort, setSelectedPriceSort] = useState('Sort by');
+    const [selectedPriceSort, setSelectedPriceSort] = useState(selectValues.sortBy);
 
     useEffect(() => {
          setListDataRefined(carList);
@@ -118,19 +132,19 @@ const CarListComponent = () => {
             .slice()
             .sort((a, b) => parsePrice(a.TotalCharge['@RateTotalAmount']) - parsePrice(b.TotalCharge['@RateTotalAmount']));
 
-        if (selectedPriceSort == 'Lowest to Highest') {
+        if (selectedPriceSort == selectValues.lowest) {
             setListDataRefined(sortedItemsLowest);
         }
-        if (selectedPriceSort == 'Highest to Lowest') {
+        if (selectedPriceSort == selectValues.highest) {
             setListDataRefined(sortedItemsLowest.reverse());
         }
-        if (selectedPriceSort == 'Sort by') {
+        if (selectedPriceSort == selectValues.sortBy) {
             setListDataRefined(carList);
         }
     }, [selectedPriceSort]);
 
     useEffect(() => {
-        setSelectedPriceSort('Sort by');
+        setSelectedPriceSort(selectValues.sortBy);
         if (selectedTab == allTabValue) {
             setListDataRefined(carList);
         } else {
@@ -156,16 +170,16 @@ const CarListComponent = () => {
                         value={selectedPriceSort}
                         onChange={handleSortChange}
                     >
-                        <MenuItem value={'Sort by'}>Sort by</MenuItem>
-                        <MenuItem value={'Lowest to Highest'}>Lowest to Highest</MenuItem>
-                        <MenuItem value={'Highest to Lowest'}>Highest to Lowest</MenuItem>
+                        <MenuItem value={selectValues.sortBy}>{selectValues.sortBy}</MenuItem>
+                        <MenuItem value={selectValues.lowest}>{selectValues.lowest}</MenuItem>
+                        <MenuItem value={selectValues.highest}>{selectValues.highest}</MenuItem>
                     </Select>
                 </FormControl>
             </CarListHead>
 
            {listDataRefined && <CarListWrapper>
                 {listDataRefined?.map((listItem, index) => (
-                    <CarListItem listItem={listItem} index={index} />
+                    <CarListItem listItem={listItem} index={index} isGridVariant={true} />
                 ))}
             </CarListWrapper>}
         </CarListComponentContainer>
