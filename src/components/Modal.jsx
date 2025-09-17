@@ -262,8 +262,8 @@ const Modal = (displayItem) => {
                                     <span className="price">{item?.TotalCharge['@RateTotalAmount']}</span>
                                 </PriceWrapper>
                                 <ModalCTAWrapper>
-                                    <a href='' className="modal-cta" id="back" onClick={() => toggleModel()}>Go Back</a>
-                                    <a href='' className="modal-cta" id="enquire" onClick={() => toggleModel()}>Enquire</a>
+                                    <a href='#' className="modal-cta" id="back" onClick={() => toggleModel()}>Go Back</a>
+                                    <a href='#' className="modal-cta" id="enquire" onClick={() => toggleModel()}>Enquire</a>
                                 </ModalCTAWrapper>
                             </div>
                             <VendorLogoCustom bgImage={getVendorLogo(item?.Vendor)} />
