@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { CarListContext } from "./context/CarListContext";
 import CarListComponent from "./components/CarListComponent";
 import Modal from "./components/Modal";
