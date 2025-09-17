@@ -76,7 +76,7 @@ export const CarListItemStyle = styled.div`
         }
     }
     .car-item-cta {
-        padding: 0.5rem 4rem;
+        padding: 0.5rem;
         background: #E6356F;
         color: white;
         font-weight: 600;

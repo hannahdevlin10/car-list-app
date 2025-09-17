@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import styled, { css } from "styled-components";
 import { CarListContext } from "../context/CarListContext";
 import CarListItem from "./CarListItem";
+import mediaQueries from "../mediaQueries.ts";
 
 const CarListComponentContainer = styled.div`
     padding: 4rem 0;
@@ -9,29 +10,46 @@ const CarListComponentContainer = styled.div`
     flex-direction: column;
     gap: 2rem;
     margin: auto;
-    padding: 40px;
+    padding: 1rem;
     max-width: 1280px;
     position: relative;
     z-index: 1;
+
+    @media only screen and ${mediaQueries.sm} {
+        padding: 40px;
+    }
 `;
 
 const CarListHead = styled.div`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
+    gap: 1rem;
+
+    @media only screen and ${mediaQueries.lg} {
+        flex-direction: row;
+    }
 `;
 
 const VendorListMenu = styled.div`
-    display: flex;
-    flex-direction: row;
-    gap: 0.75rem
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 8px;
+    row-gap: 8px;
+    text-align: center;
+
+    @media only screen and ${mediaQueries.sm} {
+        display: flex;
+        flex-direction: row;
+        gap: 0.75rem
+    }
 `;
 
 const VendorListItem = styled.div`
     font-size: 14px;
     font-weight: 700;
     padding: 12px 32px;
-    border-radius: 20px;
+    border-radius: 24px;
     border: 1px solid rgba(17, 17, 17, 0.05);
     color: white;
     background: #333333;
@@ -53,9 +71,17 @@ const DropdownWrapper = styled.select`
 
 const CarListWrapper = styled.div`
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     column-gap: 24px;
     row-gap: 24px;
+
+    @media only screen and ${mediaQueries.sm} {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media only screen and ${mediaQueries.lg} {
+        grid-template-columns: repeat(3, 1fr);
+    }
 `;
 
 const CarListComponent = () => {
