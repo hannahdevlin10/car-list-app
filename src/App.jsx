@@ -2,22 +2,68 @@ import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { CarListContext } from "./context/CarListContext";
 import CarListComponent from "./components/CarListComponent";
+import Modal from "./components/Modal";
 
 const PageContainer = styled.div`
-  max-width: 1280px;
-  margin: auto;
   display: flex;
-  background: #FFFFFF;
-  padding: 4rem 2.5rem;
   flex-direction: column;
+
+  body {
+    padding: 40px;
+}
+
+/* Animation */
+
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0)
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1
+    }
+}
+
+.animated {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: both
+}
+
+.animatedFadeInUp {
+    opacity: 0
+}
+
+.fadeInUp {
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+}
 `;
 
 const WhiteBackground = styled.div`
   background: #FFFFFF;
+  width: 100%;
+  height: 100%;
 `;
 
 const OffWhiteBackground = styled.div`
-  background: #efefefe;
+  background: #f1f1f1;
+  width: 100%;
+  height: 100%;
 `;
 
 const PageHead = styled.div`
@@ -26,6 +72,8 @@ const PageHead = styled.div`
   gap: 1rem;
   margin: auto;
   text-align: center;
+  padding: 40px;
+  max-width: 1280px;
   .page-title {
     font-size: 3.5rem;
     font-weight: 700;
@@ -40,7 +88,7 @@ const PageHead = styled.div`
 
 const App = () => {
   const dataUrl = `https://ajaxgeo.cartrawler.com/ctabe/cars.json`;
-  const { setCarList, setVendorList } = useContext(CarListContext);
+  const { setCarList, setVendorList, selectedItem } = useContext(CarListContext);
   const [localCarList, setLocalCarList] = useState();
 
   useEffect(() => {
@@ -68,12 +116,18 @@ const App = () => {
 
   return (
     <PageContainer>
-      <PageHead>
-        <div className="page-title">Car List Directory</div>
-        <div className="page-subtitle">Please select a car from the list below to view more details.</div>
-      </PageHead>
+      <WhiteBackground>
+        <PageHead className="animated animatedFadeInUp fadeInUp">
+          <div className="page-title">Car List Directory</div>
+          <div className="page-subtitle">Please select a vehicle from the list below to view more details.</div>
+        </PageHead>
+      </WhiteBackground>
 
+    <OffWhiteBackground>
       <CarListComponent />
+    </OffWhiteBackground>
+
+      <Modal displayItem={selectedItem} />
     </PageContainer>
   )
 }
