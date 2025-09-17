@@ -3,6 +3,9 @@ import styled, { css } from "styled-components";
 import { CarListContext } from "../context/CarListContext";
 import CarListItem from "./CarListItem";
 import mediaQueries from "../mediaQueries.ts";
+import Select from '@mui/material/Select';
+import FormControl from '@mui/material/FormControl';
+import MenuItem from '@mui/material/MenuItem';
 
 const CarListComponentContainer = styled.div`
     padding: 4rem 0;
@@ -17,6 +20,16 @@ const CarListComponentContainer = styled.div`
 
     @media only screen and ${mediaQueries.sm} {
         padding: 40px;
+    }
+
+    // CSS Overrides
+    [class*="MuiOutlinedInput"] {
+        border-radius: 24px;
+        width: 200px;
+        padding: 0.25rem;
+    }
+    .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root.Mui-focused .MuiOutlinedInput-notchedOutline { 
+        border-color: #E6356F !important;
     }
 `;
 
@@ -37,11 +50,12 @@ const VendorListMenu = styled.div`
     column-gap: 8px;
     row-gap: 8px;
     text-align: center;
+    align-items: center;
 
     @media only screen and ${mediaQueries.sm} {
         display: flex;
         flex-direction: row;
-        gap: 0.75rem
+        gap: 0.75rem;
     }
 `;
 
@@ -54,19 +68,13 @@ const VendorListItem = styled.div`
     color: white;
     background: #333333;
     cursor: pointer;
+    height: fit-content;
 
     ${props =>
         props.isActive == true &&
         css`
         background: #E6356F;
     `}
-`;
-
-const DropdownWrapper = styled.select`
-    border: 1px solid black;
-    border-radius: 20px;
-    padding: 12px;
-    font-size: 16px;
 `;
 
 const CarListWrapper = styled.div`
@@ -85,11 +93,12 @@ const CarListWrapper = styled.div`
 `;
 
 const CarListComponent = () => {
-    const { vendorList, carList, setSelectedItem, listDataRefined, setListDataRefined } = useContext(CarListContext);
+    const { vendorList, carList, listDataRefined, setListDataRefined } = useContext(CarListContext);
     let uniqueVendorList = [...new Set(vendorList)];
 
     const allTabValue = 'ALL';
     const [selectedTab, setSelectedTab] = useState(allTabValue);
+    const [selectedPriceSort, setSelectedPriceSort] = useState('Sort by');
 
     useEffect(() => {
          setListDataRefined(carList);
@@ -99,11 +108,29 @@ const CarListComponent = () => {
         setSelectedTab(selectedTab)
     }
 
-    const handleSortChange = (sortVal) => {
-        console.log('sortVal: ', sortVal)
+    const handleSortChange = (e) => {
+        setSelectedPriceSort(e.target.value);
     }
 
     useEffect(() => {
+        const parsePrice = x => parseFloat(x.replace(/^\$/, '')) || 0;
+        const sortedItemsLowest = listDataRefined && listDataRefined
+            .slice()
+            .sort((a, b) => parsePrice(a.TotalCharge['@RateTotalAmount']) - parsePrice(b.TotalCharge['@RateTotalAmount']));
+
+        if (selectedPriceSort == 'Lowest to Highest') {
+            setListDataRefined(sortedItemsLowest);
+        }
+        if (selectedPriceSort == 'Highest to Lowest') {
+            setListDataRefined(sortedItemsLowest.reverse());
+        }
+        if (selectedPriceSort == 'Sort by') {
+            setListDataRefined(carList);
+        }
+    }, [selectedPriceSort]);
+
+    useEffect(() => {
+        setSelectedPriceSort('Sort by');
         if (selectedTab == allTabValue) {
             setListDataRefined(carList);
         } else {
@@ -123,12 +150,17 @@ const CarListComponent = () => {
                         ))}
                     </VendorListMenu>
                 )}
-
-                <DropdownWrapper name="sort-by-price">
-                    <option value="" onClick={() => handleSortChange('default')}>Sort by Price</option>
-                    <option value="lowest" onClick={() => handleSortChange('lowest')}>Lowest to Highest</option>
-                    <option value="highest" onClick={() => handleSortChange('highest')}>Highest to Lowest</option>
-                </DropdownWrapper>
+                <FormControl>
+                    <Select
+                        id="select-small"
+                        value={selectedPriceSort}
+                        onChange={handleSortChange}
+                    >
+                        <MenuItem value={'Sort by'}>Sort by</MenuItem>
+                        <MenuItem value={'Lowest to Highest'}>Lowest to Highest</MenuItem>
+                        <MenuItem value={'Highest to Lowest'}>Highest to Lowest</MenuItem>
+                    </Select>
+                </FormControl>
             </CarListHead>
 
            {listDataRefined && <CarListWrapper>

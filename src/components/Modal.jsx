@@ -214,7 +214,6 @@ const Modal = (displayItem) => {
         setSelectedItem(undefined);
     }
 
-    console.log('item: ', item)
     return (
         <FadeBackground itemIsSelected={item !== undefined}>
             <ModalContainer>
