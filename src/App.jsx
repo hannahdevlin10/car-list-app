@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { CarListContext } from "./context/CarListContext";
 import CarListComponent from "./components/CarListComponent";
 import Modal from "./components/Modal";
@@ -8,12 +8,7 @@ import mediaQueries from "./mediaQueries.ts";
 const PageContainer = styled.div`
   display: flex;
   flex-direction: column;
-
-  body {
-    padding: 2.5rem;
-}
-
-/* Animation */
+  position: relative;
 
 @keyframes fadeInUp {
     from {
@@ -160,6 +155,32 @@ const Legend = styled.div`
   }
 `;
 
+const ScrollToTop = styled.div`
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: white;
+  font-size: 26px;
+  width: 40px;
+  height: 40px;
+  z-index: 100;
+  border-radius: 60px;
+  text-align: center;
+  justify-content: center;
+  background: #333333;
+  align-items: center;
+  color: white;
+  cursor: pointer;
+
+  div {
+    margin-top: 6px;
+  }
+
+  @media only screen and ${mediaQueries.sm} {
+    display: none;
+  }
+`;
+
 const App = () => {
   const dataUrl = `https://ajaxgeo.cartrawler.com/ctabe/cars.json`;
   const { setCarList, setVendorList, selectedItem } = useContext(CarListContext);
@@ -226,6 +247,10 @@ const App = () => {
     </OffWhiteBackground>
 
       <Modal displayItem={selectedItem} />
+
+     <ScrollToTop onClick={() => window && window.scrollTo(0,0)}>
+        <div>^</div>
+      </ScrollToTop>
     </PageContainer>
   )
 }
