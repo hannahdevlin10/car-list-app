@@ -47,7 +47,7 @@ const ModalInner = styled.div`
 
     margin: 5% auto;
     border: 1px solid #888;
-    max-width: 59.375rem;
+    max-width: 60.375rem;
     box-sizing: border-box;
     background-clip: padding-box, border-box;
     background-origin: padding-box, border-box;
@@ -58,6 +58,7 @@ const ModalInner = styled.div`
     z-index: 5;
     animation-name: fadeIn;
     animation-duration: 0.4s;
+    margin: 15% 1rem 15% 1rem;
 
     @media only screen and ${mediaQueries.lg} {
         margin: 15% auto;
@@ -125,6 +126,7 @@ const ModalCTAWrapper = styled.div`
         }
     #enquire {
         color: white;
+        border: 0;
         background: #E6356F;
         &:hover {
             background: #f53a79ff;
@@ -141,7 +143,7 @@ const ModalDisplayItemInfo = styled.div`
 
 const ModalImageWrapper = styled.div`
     border-radius: 1.5rem;
-    max-height: 28.125rem;
+    height: 19.125rem;
     width: auto;
     background: white;
     order: 1;
@@ -153,6 +155,8 @@ const ModalImageWrapper = styled.div`
     }
 
     @media only screen and ${mediaQueries.lg} {
+        max-height: 28.125rem;
+        height: auto;
         width: 60%;
         order: 2;
     }

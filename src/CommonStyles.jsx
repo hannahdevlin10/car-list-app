@@ -74,25 +74,28 @@ export const CarListItemStyle = styled.div`
         button {
             color: #FFFFFF;
             text-decoration: none;
-            padding: 0.5rem;
+            padding: 0.5rem 1rem;
             background: #E6356F;
+            font-size: 16px;
             font-weight: 600;
             text-decoration: none;
             border-radius: 1.5rem;
             text-align: center;
-            width: auto;
+            width: 100%;
             cursor: pointer;
             border: 0;
+
+            &:hover {
+                background: #f53a79ff;
+            }
+
+            @media only screen and (min-width: 62rem) {
+                display: flex;
+                width: fit-content;
+                margin: auto;
+            }
         }
 
-        &:hover {
-            background: #f53a79ff;
-        }
-
-        @media only screen and (min-width: 62rem) {
-            width: fit-content;
-            margin: auto;
-        }
     }
     #price-wrapper-custom {
         padding: 0;

@@ -68,7 +68,7 @@ const VendorListMenu = styled.div`
 const VendorListItem = styled.div`
     font-size: 0.875rem;
     font-weight: 700;
-    padding: 0.75rem 2rem;
+    padding: 0.5rem 2rem;
     border-radius: 1.5rem;
     border: 1px solid rgba(17, 17, 17, 0.05);
     color: white;
