@@ -141,7 +141,8 @@ const CarListComponent = () => {
         if (selectedPriceSort === selectValues.sortBy) {
             setListDataRefined(carList);
         }
-    }, [selectedPriceSort, carList, listDataRefined, selectValues?.highest, selectValues?.lowest, selectValues?.sortBy, setListDataRefined]);
+        // eslint-disable-next-line
+    }, [selectedPriceSort]);
 
     useEffect(() => {
         setSelectedPriceSort(selectValues.sortBy);
@@ -151,7 +152,8 @@ const CarListComponent = () => {
             let result = carList?.filter((car) => car.Vendor === selectedTab);
             setListDataRefined(result);
         }
-    }, [selectedTab, carList, selectValues.sortBy, setListDataRefined]);
+        // eslint-disable-next-line
+    }, [selectedTab]);
 
     return (
         <CarListComponentContainer className="animated animatedFadeInUp fadeInUp">

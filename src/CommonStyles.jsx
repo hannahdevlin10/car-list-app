@@ -73,13 +73,17 @@ export const CarListItemStyle = styled.div`
     .car-item-cta {
         padding: 0.5rem;
         background: #E6356F;
-        color: white;
         font-weight: 600;
         text-decoration: none;
         border-radius: 1.5rem;
         text-align: center;
         width: auto;
         cursor: pointer;
+
+        a {
+            color: #FFFFFF;
+            text-decoration: none;
+        }
 
         &:hover {
             background: #f53a79ff;
