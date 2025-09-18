@@ -143,7 +143,7 @@ const ModalDisplayItemInfo = styled.div`
 
 const ModalImageWrapper = styled.div`
     border-radius: 1.5rem;
-    height: 19.125rem;
+    height: 12.125rem;
     width: auto;
     background: white;
     order: 1;
@@ -152,6 +152,10 @@ const ModalImageWrapper = styled.div`
         width: 100%;
         height: 100%;
         object-fit: contain;
+    }
+
+    @media only screen and ${mediaQueries.lg} {
+        height: 19.125rem;
     }
 
     @media only screen and ${mediaQueries.lg} {

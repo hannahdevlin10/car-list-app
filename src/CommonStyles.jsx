@@ -1,7 +1,8 @@
 import styled, { css } from "styled-components";
+import mediaQueries from "./mediaQueries.ts";
 
 export const CarListItemStyle = styled.div`
-    padding: 1rem 0.5rem;
+    padding: 1rem;
     border-radius: 1.5rem;
     border: 1px solid #EFEFEF;
     box-sizing: border-box;
@@ -9,6 +10,10 @@ export const CarListItemStyle = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+
+    @media only screen and ${mediaQueries.sm} {
+        padding: 1rem 0.5rem;
+    }
 
     .content {
         position: relative;
@@ -51,8 +56,13 @@ export const CarListItemStyle = styled.div`
         flex-direction: column;
         gap: 0.875rem;
         padding: 1rem 0.5rem;
-        margin-top: 1rem;
-        margin-bottom: 1rem;
+        margin-bottom: 0.5rem;
+
+
+        @media only screen and ${mediaQueries.sm} {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
 
         .car-detail-item {
             display: flex;
@@ -124,6 +134,11 @@ export const PriceWrapper = styled.div`
     gap: 0.25rem;
     padding: 0 1rem;
     margin-bottom: 2rem;
+    margin-top: -1.25rem;
+
+    @media only screen and ${mediaQueries.sm} {
+        margin-top: 0;
+    }
 
     .currency-symbol {
         font-size: 0.75rem;

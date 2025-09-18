@@ -160,9 +160,9 @@ const ScrollToTop = styled.div`
   bottom: 1rem;
   right: 1rem;
   background: white;
-  font-size: 26px;
-  width: 40px;
-  height: 40px;
+  font-size: 32px;
+  width: 60px;
+  height: 60px;
   z-index: 100;
   border-radius: 60px;
   text-align: center;
@@ -173,7 +173,7 @@ const ScrollToTop = styled.div`
   cursor: pointer;
 
   div {
-    margin-top: 6px;
+    margin-top: 16px;
   }
 
   @media only screen and ${mediaQueries.sm} {
