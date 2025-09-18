@@ -119,6 +119,7 @@ const ModalCTAWrapper = styled.div`
     }
 
     #back {
+        color: black;
         border: 3px solid black;
             &:hover {
                 background: white;
